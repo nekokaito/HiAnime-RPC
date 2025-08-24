@@ -22,8 +22,20 @@ Since the site doesn’t allow opening the dev console, I had to rely on **rever
 - Data extracted via reverse-engineering (since console access is blocked on HiAnime)  
 
 ##  Usage
+
+# Step 1
 - Run ```run-win.bat```
 
 or
 
 - Run ```run-bash.sh```
+
+# Step 2
+
+- Open Chrome and go to: ```chrome://extensions/```
+
+- Enable Developer Mode (top right corner).
+
+- Click Load unpacked and select this project folder's extension.
+
+- Open HiAnime and start watching
