@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "HiAnime RPC",
+  "version": "1.0",
+  "description": "neko kaito hehe",
+  "permissions": ["tabs", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://hianime.to/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
