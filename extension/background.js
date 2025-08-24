@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((msg, tabInfo, reply) => {
+chrome.runtime.onMessage.addListener((msg) => {
   if (msg.anime) {
     console.log("Watching:", msg.anime);
 

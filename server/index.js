@@ -9,19 +9,31 @@ const client = new rpc.Client({ transport: "ipc" });
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.post("/anime", (req, res) => {
-  const { anime } = req.body;
-  console.log("Now watching:", anime);
 
-  client.setActivity({
-    details: anime,
-    state: "HiAnime",
-    largeImageKey: "hianime",
-    buttons: [{ label: "Watch with me", url: "https://hianime.to" }],
-  });
+client.login({ clientId }).catch(console.error);
+
+let lastKey = "";
+
+app.post("/anime", (req, res) => {
+  const { anime, episode, episodeTitle, cover } = req.body;
+
+  const key = anime + episode + episodeTitle;
+  if (key !== lastKey) {
+    lastKey = key;
+    console.log("Now watching:", anime, "Episode:", episode, episodeTitle);
+
+    client.setActivity({
+      details: anime,
+      state: episode ? `Episode ${episode}: ${episodeTitle}` : "",
+      largeImageKey: "hianime",
+      smallImageKey: "play",
+      buttons: [{ label: "Watch with me", url: "https://hianime.to" }],
+      instance: false,
+      type: 3,
+    });
+  }
 
   res.sendStatus(200);
 });
 
-client.login({ clientId }).catch(console.error);
 app.listen(6969, () => console.log("Listening on http://localhost:6969"));

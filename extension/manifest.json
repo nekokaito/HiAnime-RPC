@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "HiAnime RPC",
+  "name": "HiAnime",
   "version": "1.0",
   "description": "neko kaito hehe",
   "permissions": ["tabs", "scripting"],
