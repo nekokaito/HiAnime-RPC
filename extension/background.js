@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener((msg, tabInfo, reply) => {
   if (msg.anime) {
     console.log("Watching:", msg.anime);
 
-    fetch("http://localhost:3000/anime", {
+    fetch("http://localhost:6969/anime", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ anime: msg.anime }),
