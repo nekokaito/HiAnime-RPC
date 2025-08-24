@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "HiAnime",
   "version": "1.0",
-  "description": "neko kaito hehe",
+  "description": "HiAnime Discord RPC (nekokaito)",
   "permissions": ["tabs", "scripting"],
   "background": {
     "service_worker": "background.js"
@@ -12,5 +12,19 @@
       "matches": ["*://hianime.to/*"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "icons": {
+    "16": "icon.ico",
+    "32": "icon.ico",
+    "48": "icon.ico",
+    "128": "icon.ico"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon.ico",
+      "32": "icon.ico",
+      "48": "icon.ico",
+      "128": "icon.ico"
+    }
+  }
 }
