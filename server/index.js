@@ -13,7 +13,6 @@ app.use(cors());
 client.login({ clientId }).catch(console.error);
 
 let lastKey = "";
-
 app.post("/anime", (req, res) => {
   const { anime, episode, episodeTitle } = req.body;
 
@@ -21,7 +20,14 @@ app.post("/anime", (req, res) => {
   if (key !== lastKey) {
     lastKey = key;
 
-    console.log("Now watching:", anime, "Episode:", episode, episodeTitle);
+    console.log(
+      "Now watching:",
+      anime,
+      "Episode:",
+      episode,
+      episodeTitle,
+      link
+    );
 
     let stateText;
     if (episode && episodeTitle) {
@@ -32,15 +38,20 @@ app.post("/anime", (req, res) => {
       stateText = episodeTitle;
     }
 
-    client.setActivity({
+    let activity = {
       details: anime || "HiAnime",
       state: stateText,
       largeImageKey: "hianime",
       smallImageKey: "play",
-      buttons: [{ label: "Watch with me", url: "https://hianime.to" }],
       instance: false,
       type: 3,
-    });
+    };
+
+    if (link && /^https?:\/\//i.test(link)) {
+      activity.buttons = [{ label: "Watch with me", url: link }];
+    }
+
+    client.setActivity(activity);
   }
 
   res.sendStatus(200);
