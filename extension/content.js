@@ -22,13 +22,14 @@ const getAnimeInfo = () => {
     anime: title,
     episode: episodeNumber,
     episodeTitle,
+    link: location.href,
   };
 };
 
 setInterval(() => {
   const info = getAnimeInfo();
 
-  const key = info.anime + info.episode + info.episodeTitle;
+  const key = info.anime + info.episode + info.episodeTitle + info.link;
 
   if (key !== lastKey) {
     lastKey = key;
@@ -37,6 +38,7 @@ setInterval(() => {
       anime: info.anime || "HiAnime",
       episode: info.episode || "",
       episodeTitle: info.episodeTitle || "",
+      link: info.link || "", 
     });
   }
 }, 1000);
