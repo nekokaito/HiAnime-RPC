@@ -14,20 +14,13 @@ client.login({ clientId }).catch(console.error);
 
 let lastKey = "";
 app.post("/anime", (req, res) => {
-  const { anime, episode, episodeTitle } = req.body;
+  const { anime, episode, episodeTitle, link } = req.body;
 
   const key = anime + episode + episodeTitle;
   if (key !== lastKey) {
     lastKey = key;
 
-    console.log(
-      "Now watching:",
-      anime,
-      "Episode:",
-      episode,
-      episodeTitle,
-      link
-    );
+    console.log("Now watching:", anime, "Episode:", episode, episodeTitle);
 
     let stateText;
     if (episode && episodeTitle) {
