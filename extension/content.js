@@ -7,6 +7,8 @@ const getAnimeInfo = () => {
       .replace(/\sEnglish Sub\/Dub online Free on HiAnime\.to$/i, "")
       .trim() || "";
 
+  let image = document.querySelector(".film-poster img")?.src || "";
+
   const activeEp = document.querySelector("a.ssl-item.ep-item.active");
   let episodeNumber = "";
   let episodeTitle = "";
@@ -20,6 +22,7 @@ const getAnimeInfo = () => {
 
   return {
     anime: title,
+    image: image,
     episode: episodeNumber,
     episodeTitle,
     link: location.href,
@@ -38,7 +41,8 @@ setInterval(() => {
       anime: info.anime || "HiAnime",
       episode: info.episode || "",
       episodeTitle: info.episodeTitle || "",
-      link: info.link || "", 
+      image: info.image || "",
+      link: info.link || "",
     });
   }
 }, 1000);

@@ -14,7 +14,7 @@ client.login({ clientId }).catch(console.error);
 
 let lastKey = "";
 app.post("/anime", (req, res) => {
-  const { anime, episode, episodeTitle, link } = req.body;
+  const { anime, episode, episodeTitle, link, image } = req.body;
 
   const key = anime + episode + episodeTitle;
   if (key !== lastKey) {
@@ -34,7 +34,7 @@ app.post("/anime", (req, res) => {
     let activity = {
       details: anime || "HiAnime",
       state: stateText,
-      largeImageKey: "hianime",
+      largeImageKey: image || "hianime",
       smallImageKey: "play",
       instance: false,
       type: 3,
