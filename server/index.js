@@ -34,7 +34,7 @@ app.post("/anime", (req, res) => {
     let activity = {
       details: anime || "HiAnime",
       state: stateText,
-      largeImageKey: image,
+      largeImageKey: image || "hianime",
       smallImageKey: "play",
       instance: false,
       type: 3,

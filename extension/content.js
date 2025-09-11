@@ -7,7 +7,7 @@ const getAnimeInfo = () => {
       .replace(/\sEnglish Sub\/Dub online Free on HiAnime\.to$/i, "")
       .trim() || "";
 
-  let image = document.querySelector('.film-poster img')?.src || "";
+  let image = document.querySelector(".film-poster img")?.src || "";
 
   const activeEp = document.querySelector("a.ssl-item.ep-item.active");
   let episodeNumber = "";
