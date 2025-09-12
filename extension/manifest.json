@@ -9,8 +9,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://hianime.to/*"],
-      "js": ["content.js"]
+      "matches": ["*://hianime.to/*", "*://megacloud.blog/*"],
+      "js": ["content.js"],
+      "all_frames": true
     }
   ],
   "icons": {
