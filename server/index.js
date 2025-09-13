@@ -1,53 +1,93 @@
 const rpc = require("discord-rpc");
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const ws = require("ws"); 
 
-const clientId = "1409166870069772328";
+const clientId = "1411062251003056269";
+if (!clientId) throw new Error("CLIENT_ID variable is undefined.");
+
 const client = new rpc.Client({ transport: "ipc" });
-
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
-
 client.login({ clientId }).catch(console.error);
 
-let lastKey = "";
-app.post("/anime", (req, res) => {
-  const { anime, episode, episodeTitle, link, image } = req.body;
+const wsServer = new ws.Server({ port: 3000 });
 
-  const key = anime + episode + episodeTitle;
-  if (key !== lastKey) {
-    lastKey = key;
+let lastAnimeTitle = null;
 
-    console.log("Now watching:", anime, "Episode:", episode, episodeTitle);
+let hianimeData = {},
+  videoplayerData = {};
 
-    let stateText;
-    if (episode && episodeTitle) {
-      stateText = `Episode ${episode}: ${episodeTitle}`;
-    } else if (episode) {
-      stateText = `Episode ${episode}`;
-    } else if (episodeTitle) {
-      stateText = episodeTitle;
+wsServer.on("connection", (ws) => {
+  console.log("Client connected!");
+
+  ws.on("message", (msg) => {
+    let data;
+    try {
+      data = JSON.parse(msg.toString());
+    } catch {
+      console.error("Invalid JSON: JSON.parse() failed.");
+      return;
     }
 
-    let activity = {
-      details: anime || "HiAnime",
-      state: stateText,
-      largeImageKey: image || "hianime",
-      smallImageKey: "play",
-      instance: false,
-      type: 3,
-    };
-
-    if (link && /^https?:\/\//i.test(link)) {
-      activity.buttons = [{ label: "Watch with me", url: link }];
+    switch (data.source) {
+      case "hianime":
+        hianimeData = data;
+        break;
+      case "videoplayer":
+        videoplayerData = data;
+        break;
     }
 
-    client.setActivity(activity);
-  }
+    const mergedData = { ...hianimeData, ...videoplayerData, source: "merged" };
 
-  res.sendStatus(200);
+    if (mergedData.anime) {
+      updateRPC(client, mergedData);
+    } else {
+      client.clearActivity();
+    }
+  });
+
+  ws.on("close", () => {
+    client.clearActivity();
+    console.log("Client disconnected");
+  });
 });
 
-app.listen(6969, () => console.log("Listening on http://localhost:6969"));
+function updateRPC(client, mergedData) {
+  try {
+    if (!mergedData) return;
+
+    let {
+      anime,
+      image,
+      episode,
+      episodeTitle,
+      episodesAmount,
+      isPlaying,
+      episodeCurrentPosition,
+      episodeDuration,
+    } = mergedData;
+
+    if (
+      anime !== lastAnimeTitle &&
+      episodeCurrentPosition &&
+      episodeCurrentPosition !== "00:00"
+    ) {
+      episodeCurrentPosition = "00:00";
+    }
+    lastAnimeTitle = anime;
+
+
+    client.setActivity({
+      details: anime || "Nothing",
+      state:
+        episode && episodesAmount && episodeTitle && episodeCurrentPosition && episodeDuration
+          ? `Episode ${episode}/${episodesAmount} (${episodeTitle}) ———
+          (${episodeCurrentPosition}/${episodeDuration})`
+          : "  ",
+      largeImageKey: image || "hianime",
+      largeImageText: "Watching anime",
+      smallImageKey: isPlaying ? "play" : "pause", // add both play and pause icons to assets!!!
+      smallImageText: isPlaying ? "Watching" : "Paused",
+    });
+  } catch (e) {
+    console.log("funny error updating RPC go debug for 10+hrs =>", e);
+  }
+}
