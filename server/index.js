@@ -88,6 +88,6 @@ function updateRPC(client, mergedData) {
       smallImageText: isPlaying ? "Watching" : "Paused",
     });
   } catch (e) {
-    console.log("funny error updating RPC go debug for 10+hrs =>", e);
+    console.log(e);
   }
 }
