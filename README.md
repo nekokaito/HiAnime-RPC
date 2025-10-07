@@ -2,10 +2,10 @@
 
 ---
 
-<center>
-![HiAnime Logo](https://hianime.to/images/logo.png)  
-![HiAnime GIF](https://i.pinimg.com/originals/cc/0b/d8/cc0bd8d6479721dcb6b5312ca4537da1.gif)
-</center>
+<p align="center">
+  <img src="https://hianime.to/images/logo.png" alt="HiAnime Logo" width="200"/>
+  <img src="https://i.pinimg.com/originals/cc/0b/d8/cc0bd8d6479721dcb6b5312ca4537da1.gif" alt="HiAnime Logo" width="200"/>
+</p>
 
 This is a small project — a **Discord Rich Presence** integration for [HiAnime.to](https://hianime.to).  
 Since the site doesn’t allow opening the developer console, the project uses **reverse-engineering** to extract the required info.
@@ -24,7 +24,7 @@ Since the site doesn’t allow opening the developer console, the project uses *
 
 ---
 
-## Usage (Beginner Friendly)
+## Usage
 
 ### Step 0 — Install Dependencies
 
