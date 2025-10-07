@@ -1,41 +1,78 @@
 # HiAnime Discord Rich Presence
 
-<p align="center">
-  <img src="https://hianime.to/images/logo.png" alt="HiAnime Logo" width="200"/>
-  <img src="https://i.pinimg.com/originals/cc/0b/d8/cc0bd8d6479721dcb6b5312ca4537da1.gif" alt="HiAnime Logo" width="200"/>
-</p>
+---
+
+<center>
+![HiAnime Logo](https://hianime.to/images/logo.png)  
+![HiAnime GIF](https://i.pinimg.com/originals/cc/0b/d8/cc0bd8d6479721dcb6b5312ca4537da1.gif)
+</center>
+
+This is a small project — a **Discord Rich Presence** integration for [HiAnime.to](https://hianime.to).  
+Since the site doesn’t allow opening the developer console, the project uses **reverse-engineering** to extract the required info.
+
+### Features
+
+- Shows what you are watching on HiAnime in your **Discord Rich Presence**
+- Auto-updates while watching
+- Lightweight and simple
+
+### Tech
+
+- Built with Node.js
+- Uses Discord RPC
+- Extracts data via reverse-engineering
 
 ---
 
-## About
-Just got bored and made this small project — a **Discord Rich Presence** integration for [HiAnime.to](https://hianime.to).  
-Since the site doesn’t allow opening the dev console, I had to rely on **reverse engineering** the website to extract the required info.  
+## Usage (Beginner Friendly)
 
-## Features
-- Shows what you are watching on HiAnime in your **Discord Rich Presence**  
-- Auto-updates while watching  
-- Lightweight and simple  
+### Step 0 — Install Dependencies
 
-## Tech
-- Built with Node.js  
-- Uses Discord RPC  
-- Data extracted via reverse-engineering (since console access is blocked on HiAnime)  
+Before running the project, install the Node.js packages:
 
-##  Usage
+```bash
+# inside the project folder
+npm install
+# or if you use Bun
+bun install
+```
 
-# Step 1
-- Run ```run-win.bat```
+> This ensures all required packages like `discord-rpc` are installed.
 
-or
+### Step 1 — Run the Node.js Server
 
-- Run ```run-bash.sh```
+- **Windows:** double-click `run-win.bat` **or** run it via command prompt.
+- **Linux / macOS:** open a terminal in the project folder and run:
 
-# Step 2
+```bash
+bash run-bash.sh
+```
 
-- Open Chrome and go to: ```chrome://extensions/```
+> Make sure the script has execute permissions:
+>
+> ```bash
+> chmod +x run-bash.sh
+> ```
 
-- Enable Developer Mode (top right corner).
+### Step 2 — Load the Chrome Extension
 
-- Click Load unpacked and select this project folder's extension.
+1. Open Chrome and go to `chrome://extensions/`.
+2. Enable **Developer Mode** (top right corner).
+3. Click **Load unpacked** and select the project folder.
+4. Open HiAnime and start watching.
 
-- Open HiAnime and start watching
+> The Discord Rich Presence should automatically update with your current anime.
+
+---
+
+## Notes / Tips
+
+- Make sure Discord is running while using this tool.
+- If nothing appears in Discord, restart both Discord and the Node.js server.
+- Keep the server running while watching HiAnime to see real-time updates.
+
+---
+
+## License
+
+MIT License
