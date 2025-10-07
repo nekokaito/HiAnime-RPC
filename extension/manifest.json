@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "HiAnime",
   "version": "1.0",
-  "description": "HiAnime Discord RPC (nekokaito)",
+  "description": "HiAnime Discord RPC (nekokaito). A Discord Rich Presence integration for HiAnime.to",
   "permissions": ["tabs", "scripting"],
   "background": {
     "service_worker": "background.js"
@@ -15,17 +15,17 @@
     }
   ],
   "icons": {
-    "16": "icon.ico",
-    "32": "icon.ico",
-    "48": "icon.ico",
-    "128": "icon.ico"
+    "16": "logo.png",
+    "32": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
   },
   "action": {
     "default_icon": {
-      "16": "icon.ico",
-      "32": "icon.ico",
-      "48": "icon.ico",
-      "128": "icon.ico"
+      "16": "logo.png",
+      "32": "logo.png",
+      "48": "logo.png",
+      "128": "logo.png"
     }
   }
 }

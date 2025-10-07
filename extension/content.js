@@ -8,8 +8,13 @@ const getAnimeInfo = () => {
   let image = document.querySelector(".film-poster img")?.src || "";
 
   const activeEp = document.querySelector("a.ssl-item.ep-item.active");
-  const epItems = [...document.querySelectorAll("a.ssl-item.ep-item[data-number]")];
-  const episodesAmount = epItems.length > 0 ? epItems.at(-1)?.getAttribute("data-number") || "1" : "1";
+  const epItems = [
+    ...document.querySelectorAll("a.ssl-item.ep-item[data-number]"),
+  ];
+  const episodesAmount =
+    epItems.length > 0
+      ? epItems.at(-1)?.getAttribute("data-number") || "1"
+      : "1";
   let episodeNumber = "";
   let episodeTitle = "";
 
@@ -33,12 +38,16 @@ const getAnimeInfo = () => {
 
 const getPlayerInfo = () => {
   return {
-    episodeCurrentPosition: document.querySelector(".jw-text.jw-text-elapsed")?.textContent || "00:00",
-    episodeDuration: document.querySelector(".jw-text.jw-text-duration")?.textContent || "00:00",
+    episodeCurrentPosition:
+      document.querySelector(".jw-text.jw-text-elapsed")?.textContent ||
+      "00:00",
+    episodeDuration:
+      document.querySelector(".jw-text.jw-text-duration")?.textContent ||
+      "00:00",
     isPlaying: document.querySelector(".jwplayer .jw-state-playing") || false,
     source: "videoplayer",
-  }
-}
+  };
+};
 
 setInterval(() => {
   let info = null;

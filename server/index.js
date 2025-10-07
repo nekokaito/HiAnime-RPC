@@ -7,7 +7,7 @@ if (!clientId) throw new Error("CLIENT_ID variable is undefined.");
 const client = new rpc.Client({ transport: "ipc" });
 client.login({ clientId }).catch(console.error);
 
-const wsServer = new ws.Server({ port: 3000 });
+const wsServer = new ws.Server({ port: 6969 });
 
 let lastAnimeTitle = null;
 
@@ -37,11 +37,7 @@ wsServer.on("connection", (ws) => {
 
     const mergedData = { ...hiAnimeData, ...videoPlayerData, source: "merged" };
 
-    if (mergedData.anime) {
-      updateRPC(client, mergedData);
-    } else {
-      client.clearActivity();
-    }
+    mergedData.anime ? updateRPC(client, mergedData) : client.clearActivity();
   });
 
   ws.on("close", () => {
@@ -50,7 +46,7 @@ wsServer.on("connection", (ws) => {
   });
 });
 
-function updateRPC(client, mergedData) {
+const updateRPC = (client, mergedData) => {
   try {
     if (!mergedData) return;
 
@@ -82,7 +78,7 @@ function updateRPC(client, mergedData) {
         episodeTitle &&
         episodeCurrentPosition &&
         episodeDuration
-          ? `Episode ${episode}/${episodesAmount} (${episodeTitle}) ———
+          ? `Episode ${episode}: ${episodeTitle} \n
           (${episodeCurrentPosition}/${episodeDuration})`
           : "  ",
       largeImageKey: image || "hianime",
@@ -93,4 +89,4 @@ function updateRPC(client, mergedData) {
   } catch (e) {
     console.log(e);
   }
-}
+};

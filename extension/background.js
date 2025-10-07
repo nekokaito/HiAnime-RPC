@@ -1,8 +1,8 @@
 let ws = null;
 let pending = [];
 
-const WS_URL = "ws://localhost:3000";
-const RECONNECT_DELAY = 2000;
+const WS_URL = "ws://localhost:6969";
+const RECONNECT_DELAY = 5000;
 
 const connectWS = () => {
   if (ws && [WebSocket.OPEN, WebSocket.CONNECTING].includes(ws.readyState))
