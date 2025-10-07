@@ -31,7 +31,7 @@ Since the site doesn’t allow opening the developer console, the project uses *
 Before running the project, install the Node.js packages:
 
 ```bash
-# inside the project folder
+# inside the [server] folder project folder
 npm install
 # or if you use Bun
 bun install
@@ -58,7 +58,7 @@ bash run-bash.sh
 
 1. Open Chrome and go to `chrome://extensions/`.
 2. Enable **Developer Mode** (top right corner).
-3. Click **Load unpacked** and select the project folder.
+3. Click **Load unpacked** and select the project/**extension** folder.
 4. Open HiAnime and start watching.
 
 > The Discord Rich Presence should automatically update with your current anime.
