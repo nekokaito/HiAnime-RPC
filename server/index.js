@@ -1,7 +1,7 @@
 const rpc = require("discord-rpc");
-const ws = require("ws"); 
+const ws = require("ws");
 
-const clientId = "1411062251003056269";
+const clientId = "1409166870069772328";
 if (!clientId) throw new Error("CLIENT_ID variable is undefined.");
 
 const client = new rpc.Client({ transport: "ipc" });
@@ -11,8 +11,8 @@ const wsServer = new ws.Server({ port: 3000 });
 
 let lastAnimeTitle = null;
 
-let hianimeData = {},
-  videoplayerData = {};
+let hiAnimeData = {},
+  videoPlayerData = {};
 
 wsServer.on("connection", (ws) => {
   console.log("Client connected!");
@@ -28,14 +28,14 @@ wsServer.on("connection", (ws) => {
 
     switch (data.source) {
       case "hianime":
-        hianimeData = data;
+        hiAnimeData = data;
         break;
       case "videoplayer":
-        videoplayerData = data;
+        videoPlayerData = data;
         break;
     }
 
-    const mergedData = { ...hianimeData, ...videoplayerData, source: "merged" };
+    const mergedData = { ...hiAnimeData, ...videoPlayerData, source: "merged" };
 
     if (mergedData.anime) {
       updateRPC(client, mergedData);
@@ -74,17 +74,20 @@ function updateRPC(client, mergedData) {
     }
     lastAnimeTitle = anime;
 
-
     client.setActivity({
       details: anime || "Nothing",
       state:
-        episode && episodesAmount && episodeTitle && episodeCurrentPosition && episodeDuration
+        episode &&
+        episodesAmount &&
+        episodeTitle &&
+        episodeCurrentPosition &&
+        episodeDuration
           ? `Episode ${episode}/${episodesAmount} (${episodeTitle}) ———
           (${episodeCurrentPosition}/${episodeDuration})`
           : "  ",
       largeImageKey: image || "hianime",
       largeImageText: "Watching anime",
-      smallImageKey: isPlaying ? "play" : "pause", // add both play and pause icons to assets!!!
+      smallImageKey: isPlaying ? "play" : "pause",
       smallImageText: isPlaying ? "Watching" : "Paused",
     });
   } catch (e) {
