@@ -3,7 +3,7 @@
 ---
 
 <p align="center">
-  <img src="https://hianime.to/images/logo.png" alt="HiAnime Logo" width="200"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/HiAnime-logo.png?_=20260601110554" alt="HiAnime Logo" width="300"/>
   <img src="https://i.pinimg.com/originals/cc/0b/d8/cc0bd8d6479721dcb6b5312ca4537da1.gif" alt="HiAnime Logo" width="200"/>
 </p>
 
