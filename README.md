@@ -3,7 +3,7 @@
 ---
 
 <p align="center">
-  ![Project Logo](./assets/logo.png)
+   <img src="./assets/logo.png" alt="Project Logo" width="200">
   <img src="https://i.pinimg.com/originals/cc/0b/d8/cc0bd8d6479721dcb6b5312ca4537da1.gif" alt="HiAnime Logo" width="200"/>
 </p>
 
